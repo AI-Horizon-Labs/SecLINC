@@ -72,7 +72,14 @@ Este sistema processa descrições de incidentes de segurança e os classifica a
 pip install -r requirements.txt
 ```
 
+### Construir e Executar o Contêiner Docker
 
+1.  **Construir a imagem:**
+
+    ```bash
+    docker build -t seclinc .
+    ```
+    
 
 #### Principais bibliotecas:
 - `pandas`: Manipulação de dados
