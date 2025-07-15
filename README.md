@@ -45,11 +45,34 @@ Este sistema processa descrições de incidentes de segurança e os classifica a
 
 ## 📦 Instalação
 
+1.  **Clone o repositório:**
+
+    ```bash
+    git clone https://github.com/AI-Horizon-Labs/SecLINC.git
+    cd SecLINC
+    ```
+
+2.  **Crie um ambiente virtual (recomendado):**
+
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate  # Linux/macOS
+    .venv\Scripts\activate  # Windows
+    ```
+
+3.  **Instale as dependências:**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
 ### Dependências
 
 ```bash
 pip install -r requirements.txt
 ```
+
+
 
 #### Principais bibliotecas:
 - `pandas`: Manipulação de dados
