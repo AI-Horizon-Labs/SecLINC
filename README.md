@@ -1,4 +1,4 @@
-# Security Language Inteligent Nist Categorization
+# SecLINC: Classificador Automatizado de Incidentes de Cibersegurança com LLMs e Engenharia de Prompting baseado no NIST
 
 Um sistema avançado de classificação automática de incidentes de segurança cibernética utilizando modelos de linguagem (LLM) e técnicas de prompting progressivo, baseado nos padrões NIST.
 
