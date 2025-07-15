@@ -1,7 +1,29 @@
-openpyxl
-torch
-rouge_score
-transformers
-openai
-pandas
-argparse
+# Bibliotecas principais para o projeto CategorizerIA
+pandas>=2.1.4
+openpyxl>=3.1.2
+openai>=1.6.1
+transformers>=4.36.2
+torch>=2.1.2
+torchvision>=0.16.2
+torchaudio>=2.1.2
+rouge-score>=0.1.2
+huggingface-hub>=0.20.1
+psutil>=5.9.7
+tqdm>=4.66.1
+tiktoken>=0.5.2
+
+# Bibliotecas do sistema (já incluídas no Python)
+# argparse - biblioteca padrão
+# os - biblioteca padrão  
+# json - biblioteca padrão
+# csv - biblioteca padrão
+# re - biblioteca padrão
+# time - biblioteca padrão
+# datetime - biblioteca padrão
+# pathlib - biblioteca padrão
+
+# Dependências adicionais que podem ser necessárias
+numpy>=1.24.4
+requests>=2.31.0
+tokenizers>=0.15.0
+safetensors>=0.4.1
