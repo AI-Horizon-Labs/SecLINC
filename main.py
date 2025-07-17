@@ -349,7 +349,6 @@ def hypothesis_testing_prompting(prompt, row, colunas, max_iter=12, limite_quali
     incident = " / ".join(
         [f"{coluna}: {row[coluna]}" if coluna in row and pd.notnull(row[coluna]) else f"{coluna}: [valor ausente]" for coluna in colunas]
     )
-    print(incident)
     categories = [f"CAT{i}" for i in range(1, 13)]
     i = 0
 
