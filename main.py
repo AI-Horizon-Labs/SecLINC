@@ -349,15 +349,10 @@ def hypothesis_testing_prompting(prompt, row, colunas, max_iter=12, limite_quali
     incident = " / ".join(
         [f"{coluna}: {row[coluna]}" if coluna in row and pd.notnull(row[coluna]) else f"{coluna}: [valor ausente]" for coluna in colunas]
     )
-
+    print(incident)
     categories = [f"CAT{i}" for i in range(1, 13)]
     i = 0
-    results = ({
-            "informacoes_das_colunas": incident,
-            "categoria_testada": 'Unknown',
-            "categoria": 'Unknown',
-            "explicacao": 'Unknown'
-            })
+
     while i < len(categories):
         category = categories[i]
         #print(f"categoria para hipotese: {category}")
@@ -381,38 +376,27 @@ def hypothesis_testing_prompting(prompt, row, colunas, max_iter=12, limite_quali
            - Indicate whether the hypothesis is SUPPORTED or NOT SUPPORTED.
         Return the hypotheses in the following format:
             True Hypothesis:[SUPPORTED/NOT SUPPORTED] 
-            False Hypothesis:[SUPPORTED/NOT SUPPORTED]    
-
+            False Hypothesis:[SUPPORTED/NOT SUPPORTED]
+        Final Classification Decision:
+          - If the True Hypothesis is SUPPORTED and the False Hypothesis is NOT SUPPORTED, return:
+            Category: same {category}
+            Explanation: [Justification for the chosen same considered {category}]
+          - Otherwise, return "UNKNOWN" as the final classification.
+            Category: UNKNOWN
+            Explanation: UNKNOWN    
         """
         hipoteses = enviar_prompt_para_llm(prompt_llm)
-        verificar_hipoteses = f"""
-        {hipoteses}
-        Final Classification Decision:
-           - If the True Hypothesis is SUPPORTED and the False Hypothesis is NOT SUPPORTED, return:
-             Category: same {category}
-             Explanation: [Justification for the chosen same considered {category}]
-           - Otherwise, return "UNKNOWN" as the final classification.
-             Category: UNKNOWN
-             Explanation: UNKNOWN
-        """
-        response_2 = enviar_prompt_para_api(verificar_hipoteses)
-        incident_info = extrair_security_incidents(response_2)
-        result_cat = incident_info.get('Category', 'UNKNOWN')
-        result_exp = incident_info.get('Explanation', 'UNKNOWN')
+        incident_info = extrair_security_incidents(hipoteses)
+        result_cat = incident_info['Category']
 
-        #print(incident_info)
-        results = ({
-            "informacoes_das_colunas": incident,
-            "categoria_testada": category,
-            "categoria": result_cat,
-            "explicacao": result_exp
-            })
         if(calcular_rouge_score(result_cat, category) >= limite_qualidade):
-    
-            break
+          results.append({
+            "informacoes_das_colunas": incident,
+            "categoria": result_cat
+            })
+          return results
+          break
         i += 1
-
-    return results
     
 
 def subcategories(categoria):
