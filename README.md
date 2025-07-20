@@ -261,6 +261,64 @@ Para depuração, monitore os logs gerados em `logs/` que contêm informações 
 - **Memória**: 200-500 MB dependendo do modelo
 - **Precisão**: 85-95% em datasets de teste
 
+Sua seção de **"Experimento"** está clara na intenção, mas contém alguns problemas de **gramática, clareza e formatação**. Aqui está uma versão revisada e mais organizada para manter o padrão profissional do restante do `README.md`:
+
+---
+
+## 🧪 Experimento
+
+Os dados utilizados para a criação do artigo são sensíveis e, mesmo após o processo de anonimização, optamos por adotar uma abordagem cautelosa. Por isso, disponibilizamos apenas uma **amostra aleatória de 5 registros** dos 194 usados nos experimentos. Essa amostra pode ser encontrada no arquivo:
+
+```
+sample/teste/amostra.xlsx
+```
+
+Para replicar o experimento com essa amostra, utilize os seguintes comandos:
+
+### ▶️ Modelo LLAMA
+
+```bash
+python main.py teste --provider meta4 --colunas 'incidente' --modo shp --formato xlsx --limite_hint 4
+python main.py teste --provider meta4 --colunas 'incidente' --modo php --formato xlsx --limite_hint 4
+python main.py teste --provider meta4 --colunas 'incidente' --modo htp --formato xlsx --limite_hint 4
+```
+
+### ▶️ Modelo Gemini
+
+```bash
+python main.py teste --provider gemini --colunas 'incidente' --modo shp --formato xlsx --limite_hint 4
+python main.py teste --provider gemini --colunas 'incidente' --modo php --formato xlsx --limite_hint 4
+python main.py teste --provider gemini --colunas 'incidente' --modo htp --formato xlsx --limite_hint 4
+```
+
+### ▶️ Modelo GPT-4
+
+```bash
+python main.py teste --provider openai --colunas 'incidente' --modo shp --formato xlsx --limite_hint 4
+python main.py teste --provider openai --colunas 'incidente' --modo php --formato xlsx --limite_hint 4
+python main.py teste --provider openai --colunas 'incidente' --modo htp --formato xlsx --limite_hint 4
+```
+
+### ▶️ Modelo GROK
+
+```bash
+python main.py teste --provider glock --colunas 'incidente' --modo shp --formato xlsx --limite_hint 4
+python main.py teste --provider glock --colunas 'incidente' --modo php --formato xlsx --limite_hint 4
+python main.py teste --provider glock --colunas 'incidente' --modo htp --formato xlsx --limite_hint 4
+```
+
+Os **resultados gerados** estão disponíveis na pasta:
+
+```
+sample/results
+```
+
+Os **logs completos** contendo as entradas e saídas de cada execução podem ser consultados em:
+
+```
+sample/logs
+```
+
 ## 🤝 Contribuição
 
 1. Faça fork do projeto
