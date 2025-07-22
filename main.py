@@ -188,15 +188,12 @@ def enviar_prompt_para_local(prompt):
             # Carrega o modelo e o tokenizer do DeepSeek-R1 com os argumentos processados
             tokenizer = AutoTokenizer.from_pretrained(modelo, **config_args)
             local_model = AutoModelForCausalLM.from_pretrained(modelo, **config_args)
-        messages = [{"role": "user", "content": prompt}]
-        formatted_prompt = tokenizer.apply_chat_template(messages, tokenize=False)
-        # Usa o pipeline para geração de texto
-        pipe = pipeline("text-generation", model=local_model, tokenizer=tokenizer, max_new_tokens=250)
-        response = pipe(formatted_prompt)[0]["generated_text"]
-
-        return response
+        pipe = pipeline("text-generation", model=modelo)
+        response = pipe(prompt, max_length=10000, num_return_sequences=1, temperature=0.7)
+        return response[0]['generated_text'][len(prompt):]
     except Exception as e:
         return f"Erro ao processar o prompt localmente: {e}"
+
 
 def calcular_rouge_score(resposta_anterior, nova_resposta):
     """
